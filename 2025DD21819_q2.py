@@ -29,9 +29,9 @@ class Student:
         
         for i in self.current_courses:
             marks = i.registered_students[self.entrynum]
-            handle.write(f"{i.coursecode} {marks}")
+            handle.write(f"{i.coursecode} {marks}\n")
             if marks is not None:
-                weighted_sum += get_grade(marks) * i.credits
+                weighted_sum += Student.get_grade(marks) * i.credits
                 total_credits += i.credits
 
         cgpa = weighted_sum / total_credits if total_credits > 0 else 0
