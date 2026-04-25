@@ -6,12 +6,42 @@ class Student:
         self.name = name
         self.current_courses = []  # List of Course objects
 
+    def get_grade(marks):
+    if marks >= 90: return 10
+    elif marks >= 80: return 9
+    elif marks >= 70: return 8
+    elif marks >= 60: return 7
+    elif marks >= 50: return 6
+    elif marks >= 40: return 5
+    elif marks >= 30: return 4
+    else: return 0
+
+    weighted_sum = 0
+    total_credits = 0
+    for i in sorted_courses:
+        marks = i.registered_students[self.entrynum]
+        if marks is not None:
+            weighted_sum += get_grade(marks) * i.credits
+            total_credits += i.credits
+    
+    cgpa = weighted_sum / total_credits if total_credits > 0 else 0
+    handle.write(f"CGPA {int(cgpa)}\n")
+
     def generate_transcript(self):
         # TODO: Create a file named <name>_<entrynum>_transcript.txt
         handle = open(f'{self.name}_{self.entrynum}_transcript.txt','w')
         self.current_courses.sort(key=lambda course: course.coursecode)
         for i in self.current_courses:
-            handle.write(f"{i.coursecode} {i.registered_students[self.entrynum]}")
+            marks = i.registered_students[self.entrynum]
+            handle.write(f"{i.coursecode} {marks}")
+            if marks is not None:
+                weighted_sum += get_grade(marks) * i.credits
+                total_credits += i.credits
+
+        cgpa = weighted_sum / total_credits if total_credits > 0 else 0
+        handle.write(f"CGPA {int(cgpa)}\n")
+        handle.close()
+            
 
 class Course:
     def __init__(self, coursecode, credits, capacity):
