@@ -7,14 +7,14 @@ class Student:
         self.current_courses = []  # List of Course objects
 
     def get_grade(marks):
-    if marks >= 90: return 10
-    elif marks >= 80: return 9
-    elif marks >= 70: return 8
-    elif marks >= 60: return 7
-    elif marks >= 50: return 6
-    elif marks >= 40: return 5
-    elif marks >= 30: return 4
-    else: return 0
+        if marks >= 90: return 10
+        elif marks >= 80: return 9
+        elif marks >= 70: return 8
+        elif marks >= 60: return 7
+        elif marks >= 50: return 6
+        elif marks >= 40: return 5
+        elif marks >= 30: return 4
+        else: return 0
 
     weighted_sum = 0
     total_credits = 0
