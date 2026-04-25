@@ -9,7 +9,7 @@ class Student:
     def generate_transcript(self):
         # TODO: Create a file named <name>_<entrynum>_transcript.txt
         handle = open(f'{self.name}_{self.entrynum}_transcript.txt','w')
-        self.current_courses.coursecode.sort()
+        self.current_courses.sort(key=lambda course: course.coursecode)
         for i in self.current_courses:
             handle.write(f"{i.coursecode} {i.registered_students[self.entrynum]}")
 
