@@ -5,7 +5,8 @@ class Student:
         self.entrynum = entrynum
         self.name = name
         self.current_courses = []  # List of Course objects
-
+        
+    @staticmethod
     def get_grade(marks):
         if marks >= 90: return 10
         elif marks >= 80: return 9
