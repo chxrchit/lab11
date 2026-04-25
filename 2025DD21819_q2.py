@@ -17,21 +17,16 @@ class Student:
         elif marks >= 30: return 4
         else: return 0
 
-        weighted_sum = 0
-        total_credits = 0
-        for i in sorted_courses:
-            marks = i.registered_students[self.entrynum]
-            if marks is not None:
-                weighted_sum += get_grade(marks) * i.credits
-                total_credits += i.credits
-        
-        cgpa = weighted_sum / total_credits if total_credits > 0 else 0
-        handle.write(f"CGPA {int(cgpa)}\n")
-
     def generate_transcript(self):
         # TODO: Create a file named <name>_<entrynum>_transcript.txt
         handle = open(f'{self.name}_{self.entrynum}_transcript.txt','w')
         self.current_courses.sort(key=lambda course: course.coursecode)
+
+        
+        weighted_sum = 0
+        total_credits = 0
+
+        
         for i in self.current_courses:
             marks = i.registered_students[self.entrynum]
             handle.write(f"{i.coursecode} {marks}")
