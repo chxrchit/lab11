@@ -8,7 +8,10 @@ class Student:
 
     def generate_transcript(self):
         # TODO: Create a file named <name>_<entrynum>_transcript.txt
-        open(f'{self.name}_{self.entrynum}_transcript.txt','w')
+        handle = open(f'{self.name}_{self.entrynum}_transcript.txt','w')
+        self.current_courses.coursecode.sort()
+        for i in self.current_courses:
+            handle.write(f"{i.coursecode} {i.registered_students[self.entrynum]}")
 
 class Course:
     def __init__(self, coursecode, credits, capacity):
@@ -20,7 +23,7 @@ class Course:
     def add_student(self, student_obj):
         # TODO: Handle capacity check and enrollment
         # Print error message to stdout if course is full
-        if self.registered_students == self.capacity:
+        if len(self.registered_students) == self.capacity:
             print(f"Course full. {student_obj.name} cannot enroll in {self.coursecode}.")
             
             
@@ -36,10 +39,10 @@ class Course:
     def load_marks(self):
         # TODO: Open <coursecode>_marks.txt and read marks
         # Read data in format: entrynum marks
-        handle = open(f'{self.coursecode}_tmarks.txt', 'r')
+        handle = open(f'{self.coursecode}_marks.txt', 'r')
         for i in handle:
            L = list(i.split())
-           self.registered_students[L[0]] = L[1]
+           self.registered_students[L[0]] = int(L[1])
         handle.close()
         
 
