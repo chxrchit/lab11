@@ -8,7 +8,7 @@ class Student:
 
     def generate_transcript(self):
         # TODO: Create a file named <name>_<entrynum>_transcript.txt
-        open(str(self.name) + str(self.entrynum) + '_transcript.txt','w')
+        open(f'{str(self.name)}_{str(self.entrynum)}_transcript.txt','w')
 
 class Course:
     def __init__(self, coursecode, credits, capacity):
